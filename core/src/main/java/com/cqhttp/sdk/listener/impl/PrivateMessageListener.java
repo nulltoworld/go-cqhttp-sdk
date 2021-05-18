@@ -1,11 +1,10 @@
 package com.cqhttp.sdk.listener.impl;
 
-import com.cqhttp.sdk.event.message.GroupMessage;
 import com.cqhttp.sdk.event.message.PrivateMessage;
-import com.cqhttp.sdk.listener.HandlerListener;
+import com.cqhttp.sdk.listener.DefaultHandlerListener;
 import com.cqhttp.sdk.listener.handler.Handler;
 
-public class PrivateMessageListener extends HandlerListener<PrivateMessage> {
+public class PrivateMessageListener extends DefaultHandlerListener<PrivateMessage> {
 
     @Override
     public void onMessage(PrivateMessage privateMessage) {
