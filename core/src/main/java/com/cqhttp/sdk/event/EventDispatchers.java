@@ -4,6 +4,7 @@ import cn.hutool.json.JSONUtil;
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
 import com.cqhttp.sdk.event.global.Message;
+import com.cqhttp.sdk.listener.EnableListener;
 import com.cqhttp.sdk.listener.Listener;
 import com.cqhttp.sdk.utils.ListenerUtils;
 
@@ -122,9 +123,13 @@ public class EventDispatchers implements Runnable {
                 } catch (NoSuchMethodException e) {
                     continue;//不支持则跳过
                 }
-                if (listener.enable()) {//检测是否开启该插件
-                    listeners.add(listener);//开启后添加入当前类型的插件
+                if(listener instanceof EnableListener){
+                    EnableListener enableListener = (EnableListener)listener;
+                    if (!enableListener.enable()) {//检测是否开启该插件
+                        continue;
+                    }
                 }
+                listeners.add(listener);//开启后添加入当前类型的插件
             } catch (Exception e) {
                 e.printStackTrace();
             }
