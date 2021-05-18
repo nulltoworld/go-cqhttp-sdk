@@ -1,10 +1,10 @@
 package com.cqhttp.sdk.listener.impl;
 
 import com.cqhttp.sdk.event.message.GroupMessage;
-import com.cqhttp.sdk.listener.HandlerListener;
+import com.cqhttp.sdk.listener.DefaultHandlerListener;
 import com.cqhttp.sdk.listener.handler.Handler;
 
-public class GroupMessageListener extends HandlerListener<GroupMessage> {
+public class GroupMessageListener extends DefaultHandlerListener<GroupMessage> {
 
     @Override
     public void onMessage(GroupMessage groupMessage) {
