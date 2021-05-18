@@ -11,7 +11,7 @@ import java.util.Map;
  *
  * @param <T>
  */
-public abstract class HandlerListener<T> extends SimpleListener<T> {
+public abstract class DefaultHandlerListener<T> extends SimpleListener<T> {
     protected Map<String, Handler<T>> handlerMap = new HashMap<>();
 
     public Map<String, Handler<T>> getHandlerMap() {
