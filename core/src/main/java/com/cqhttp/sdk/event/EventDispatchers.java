@@ -34,6 +34,8 @@ public class EventDispatchers implements Runnable {
 
     protected BlockingQueue<String> queue;
 
+    private Listener<String> messageListener;
+
     public EventDispatchers( BlockingQueue<String> queue) {
         this.queue = queue;
     }
@@ -78,6 +80,9 @@ public class EventDispatchers implements Runnable {
         Class<? extends Message> messageType = ListenerUtils.getMessageType(message);//获取消息对应的实体类型
         if (messageType == null) {
             return;
+        }
+        if (this.messageListener != null){
+            this.messageListener.onMessage(message);
         }
         log.debug("接收到上报消息：{}", messageType);
         Message bean = JSONUtil.toBean(message, messageType);//将消息反序列化为对象
@@ -146,5 +151,13 @@ public class EventDispatchers implements Runnable {
      */
     public void cleanCache() {
         cache.clear();
+    }
+
+    public void setMessageListener(Listener<String> messageListener) {
+        this.messageListener = messageListener;
+    }
+
+    public Listener<String> getMessageListener() {
+        return messageListener;
     }
 }
