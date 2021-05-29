@@ -5,6 +5,8 @@ import com.cqhttp.sdk.connection.Connection;
 import com.cqhttp.sdk.connection.ConnectionFactory;
 import com.cqhttp.sdk.event.EventDispatchers;
 import com.cqhttp.sdk.event.message.GroupMessage;
+import com.cqhttp.sdk.event.message.PrivateMessage;
+import com.cqhttp.sdk.listener.SimpleListener;
 import com.cqhttp.sdk.listener.handler.Handler;
 import com.cqhttp.sdk.listener.impl.GroupMessageListener;
 
@@ -31,6 +33,12 @@ public class TestApplication {
             }
         });
         dispatchers.addListener(groupMessageListener);
+        dispatchers.addListener(new SimpleListener<PrivateMessage>() {//私聊监听
+            @Override
+            public void onMessage(PrivateMessage privateMessage) {
+                System.out.println(privateMessage);
+            }
+        });
 
         dispatchers.start(10);//线程组处理任务
 
