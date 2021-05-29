@@ -7,6 +7,7 @@ import com.cqhttp.sdk.event.global.RecvMessage;
  */
 public class PrivateMessage extends RecvMessage {
     private Integer tempSource;//临时会话来源
+    private Sender sender;
 
     public Integer getTempSource() {
         return tempSource;
@@ -16,10 +17,19 @@ public class PrivateMessage extends RecvMessage {
         this.tempSource = tempSource;
     }
 
+    public Sender getSender() {
+        return sender;
+    }
+
+    public void setSender(Sender sender) {
+        this.sender = sender;
+    }
+
     @Override
     public String toString() {
         return "PrivateMessage{" +
                 "tempSource=" + tempSource +
+                ", sender=" + sender +
                 "} " + super.toString();
     }
 

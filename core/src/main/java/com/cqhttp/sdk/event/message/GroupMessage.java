@@ -8,6 +8,7 @@ import com.cqhttp.sdk.event.global.RecvMessage;
 public class GroupMessage extends RecvMessage {
     private Long groupId;//群号
     private Anonymous anonymous;//是否匿名 null为匿名
+    private Sender sender;
 
     public Long getGroupId() {
         return groupId;
@@ -25,11 +26,20 @@ public class GroupMessage extends RecvMessage {
         this.anonymous = anonymous;
     }
 
+    public Sender getSender() {
+        return sender;
+    }
+
+    public void setSender(Sender sender) {
+        this.sender = sender;
+    }
+
     @Override
     public String toString() {
         return "GroupMessage{" +
                 "groupId=" + groupId +
-                ", anonymous='" + anonymous + '\'' +
+                ", anonymous=" + anonymous +
+                ", sender=" + sender +
                 "} " + super.toString();
     }
 
